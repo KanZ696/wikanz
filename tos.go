@@ -5,6 +5,7 @@ import "fmt"
 func main() {
     var pilihan int
     var jumlah int
+    var isMember string
 
     fmt.Println("======= KAFE KOPI KITA =======")
     fmt.Println("1. Kopi Espresso   (Rp 18.000)")
@@ -25,6 +26,20 @@ func main() {
         harga = 26000
     }
 
-    total := harga * jumlah
-    fmt.Printf("Total Bayar: Rp %d\n", total)
+    subtotal := harga * jumlah
+
+    fmt.Print("Apakah punya kartu member? (y/n): ")
+    fmt.Scanln(&isMember)
+
+    diskon := 0
+    if isMember == "y" || isMember == "Y" {
+        diskon = subtotal * 10 / 100 
+    }
+
+    totalBayar := subtotal - diskon
+
+    fmt.Println("\n--- Rincian Tagihan ---")
+    fmt.Printf("Subtotal    : Rp %d\n", subtotal)
+    fmt.Printf("Diskon (10%): Rp %d\n", diskon)
+    fmt.Printf("Total Bayar : Rp %d\n", totalBayar)
 }
